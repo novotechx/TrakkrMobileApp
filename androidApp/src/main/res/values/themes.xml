@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Trakkr" parent="android:Theme.Material.NoActionBar">
+        <item name="android:colorBackground">#121212</item>
+        <item name="android:statusBarColor">#121212</item>
+        <item name="android:navigationBarColor">#1E1E1E</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.Trakkr.Splash" parent="Theme.Trakkr">
+        <item name="android:windowBackground">#121212</item>
+    </style>
+</resources>
