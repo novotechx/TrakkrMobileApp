@@ -1,45 +1,99 @@
-# Built application files
-*.apk
-*.aab
-*.ap_
-*.aab
-
-# Files for the ART/Dalvik VM
-*.dex
-
-# Java class files
-*.class
-
-# Generated files
-bin/
-gen/
-out/
-
-# Gradle files
+# ─── Gradle ──────────────────────────────────────────────────
 .gradle/
 build/
 **/build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
 
-# Local configuration file (sdk path, etc)
-local.properties
+# ─── Kotlin / KMP ────────────────────────────────────────────
+.kotlin/
+kotlin-js-store/
+*.klib
 
-# Signing files
-*.jks
-*.keystore
+# Kotlin/Native build cache
+.konan/
 
-# Google Services (contains API keys)
-google-services.json
-
-# Android Studio / IntelliJ
-.idea/
-*.iml
-*.iws
-*.ipr
-.navigation/
+# ─── Android ─────────────────────────────────────────────────
+# Build outputs
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+out/
+release/
 captures/
+.navigation/
 .externalNativeBuild/
 .cxx/
 
+# Profiling / benchmarking
+*.hprof
+profile.bin
+app.prof
+
+# Android Studio NDK side-by-side versions
+/.ndk/
+
+# Lint cache (results themselves are fine to commit)
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
+
+# ─── iOS / Xcode ─────────────────────────────────────────────
+iosApp/Pods/
+iosApp/.symlinks/
+iosApp/iosApp.xcworkspace/xcuserdata/
+iosApp/iosApp.xcodeproj/xcuserdata/
+iosApp/iosApp.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+DerivedData/
+xcuserdata/
+*.hmap
+
+# CocoaPods lockfile is usually committed; remove this line if you don't vendor Pods
+# Podfile.lock
+
+# ─── Secrets & local configuration ───────────────────────────
+local.properties
+*.jks
+*.keystore
+*.p12
+*.p8
+*.mobileprovision
+google-services.json
+GoogleService-Info.plist
+
+# ─── IDE: IntelliJ / Android Studio ──────────────────────────
+# Ignore everything in .idea except shared, team-wide settings.
+# Note: we use `.idea/*` (not `**`) so git can still descend into the
+# un-ignored directories below.
+.idea/*
+!.idea/codeStyles/
+!.idea/inspectionProfiles/
+!.idea/runConfigurations/
+!.idea/copyright/
+!.idea/vcs.xml
+
+*.iml
+*.iws
+*.ipr
+
+# ─── IDE: VS Code ────────────────────────────────────────────
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# ─── IDE: Fleet ──────────────────────────────────────────────
+.fleet/
+
+# ─── OS cruft ────────────────────────────────────────────────
 # macOS
 .DS_Store
 .AppleDouble
@@ -52,22 +106,15 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 
-# iOS
-iosApp/Pods/
-iosApp/.symlinks/
-iosApp/iosApp.xcworkspace/xcuserdata/
-iosApp/iosApp.xcodeproj/xcuserdata/
-iosApp/iosApp.xcodeproj/project.xcworkspace/xcuserdata/
-*.xcuserstate
-*.xcscmblueprint
-DerivedData/
+# Linux
+*~
+.directory
+.Trash-*
 
-# Kotlin Multiplatform
-/shared/build/
-/androidApp/build/
-
-# Misc
+# ─── Misc ────────────────────────────────────────────────────
 *.log
 *.tmp
 *.swp
-*~
+*.swo
+*.bak
+*.orig

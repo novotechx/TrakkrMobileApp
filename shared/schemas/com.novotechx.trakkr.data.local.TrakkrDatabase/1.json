@@ -1,0 +1,190 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "c0127f16d5b10ac979589327628f7296",
+    "entities": [
+      {
+        "tableName": "activities",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type` INTEGER NOT NULL, `title` TEXT NOT NULL, `notes` TEXT NOT NULL, `started_at` INTEGER NOT NULL, `ended_at` INTEGER NOT NULL, `distance_meters` REAL NOT NULL, `duration_seconds` INTEGER NOT NULL, `avg_pace` REAL NOT NULL, `avg_speed` REAL NOT NULL, `elevation_gain` REAL NOT NULL, `calories` INTEGER NOT NULL, `weather_temp` REAL, `weather_condition` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startedAt",
+            "columnName": "started_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endedAt",
+            "columnName": "ended_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "distanceMeters",
+            "columnName": "distance_meters",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "durationSeconds",
+            "columnName": "duration_seconds",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "avgPaceSecondsPerKm",
+            "columnName": "avg_pace",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "avgSpeedKmh",
+            "columnName": "avg_speed",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "elevationGainMeters",
+            "columnName": "elevation_gain",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "calories",
+            "columnName": "calories",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weatherTemp",
+            "columnName": "weather_temp",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "weatherCondition",
+            "columnName": "weather_condition",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "route_points",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `activity_id` INTEGER NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `altitude` REAL NOT NULL, `speed` REAL NOT NULL, `timestamp` INTEGER NOT NULL, `heart_rate` INTEGER, FOREIGN KEY(`activity_id`) REFERENCES `activities`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "activityId",
+            "columnName": "activity_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "latitude",
+            "columnName": "latitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "longitude",
+            "columnName": "longitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "altitude",
+            "columnName": "altitude",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "speed",
+            "columnName": "speed",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "heartRate",
+            "columnName": "heart_rate",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_route_points_activity_id",
+            "unique": false,
+            "columnNames": [
+              "activity_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_route_points_activity_id` ON `${TABLE_NAME}` (`activity_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "activities",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "activity_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c0127f16d5b10ac979589327628f7296')"
+    ]
+  }
+}
